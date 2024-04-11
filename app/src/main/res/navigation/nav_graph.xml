@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/recycleFragment">
+
+    <fragment
+        android:id="@+id/recycleFragment"
+        android:name="com.example.photodemofragment.fragments.RecycleFragment"
+        android:label="RecycleFragment"
+        tools:layout="@layout/fragment_recycle">
+        <action
+            android:id="@+id/action_recycleFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.photodemofragment.fragments.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="photoId"
+            app:argType="string" />
+        <argument
+            android:name="photoDescription"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="photoUrl"
+            app:argType="string" />
+    </fragment>
+</navigation>

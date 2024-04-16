@@ -40,7 +40,7 @@ public class RecycleFragment extends Fragment {
                 RecycleFragmentDirections.ActionRecycleFragmentToDetailFragment action =
                         RecycleFragmentDirections.actionRecycleFragmentToDetailFragment(
                                 recycleViewModel.getUnsplashPhoto().getId(),
-                                recycleViewModel.getUnsplashPhoto().getDescription(),
+                                recycleViewModel.getUnsplashPhoto().getAlt_description(),
                                 recycleViewModel.getUnsplashPhoto().getUrls().getRaw()
                         );
                 Navigation.findNavController(requireView()).navigate(action);

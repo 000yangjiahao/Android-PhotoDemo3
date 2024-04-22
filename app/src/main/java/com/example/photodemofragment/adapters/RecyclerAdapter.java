@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.photodemofragment.BR;
 import com.example.photodemofragment.R;
+import com.example.photodemofragment.entity.ItemTemplate;
 import com.example.photodemofragment.entity.UnsplashPhoto;
 import com.example.photodemofragment.viewModels.MainViewModel;
 import com.example.photodemofragment.viewModels.RecycleViewModel;
@@ -31,10 +32,11 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoViewHolder> {
 
     private final List<UnsplashPhoto> photoList;
-    private final RecycleViewModel recycleViewModel;
-    public RecyclerAdapter(RecycleViewModel recycleViewModel) {
+    private final ItemTemplate itemTemplate;
+
+    public RecyclerAdapter(ItemTemplate itemTemplate) {
         this.photoList = new ArrayList<>();
-        this.recycleViewModel = recycleViewModel;
+        this.itemTemplate=itemTemplate;
     }
     @SuppressLint("NotifyDataSetChanged")
     public void updateData(List<UnsplashPhoto> newData) {
@@ -56,8 +58,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoV
         UnsplashPhoto photo = photoList.get(position);
         ViewDataBinding binding = DataBindingUtil.getBinding(holder.itemView);
         assert binding != null;
-        binding.setVariable(BR.photo, photo);
-        binding.setVariable(BR.recycleViewModel,recycleViewModel);
+        binding.setVariable(itemTemplate.getVariableId(), photo);
+        if( itemTemplate.getExtraVariable() != null ){
+            itemTemplate.getExtraVariable().forEach( t -> binding.setVariable( t.first , t.second ));
+        }
         binding.executePendingBindings();
     }
 
@@ -66,12 +70,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoV
         return photoList.size();
     }
 
-    public class PhotoViewHolder extends RecyclerView.ViewHolder {
-        private final ViewDataBinding binding;
+    public static class PhotoViewHolder extends RecyclerView.ViewHolder {
 
         public PhotoViewHolder(ViewDataBinding binding) {
             super(binding.getRoot());
-            this.binding = binding;
         }
 
     }

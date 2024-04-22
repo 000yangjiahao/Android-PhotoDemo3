@@ -8,6 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.photodemofragment.mvvm.ObservableViewModel;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class DetailViewModel extends ObservableViewModel {
     private String photoId;
     private String photoDescription;
@@ -17,6 +22,7 @@ public class DetailViewModel extends ObservableViewModel {
     public LiveData<Void> getBackPressedEvent() {
         return backPressedEvent;
     }
+
     public String getPhotoId() {
         return photoId;
     }
@@ -41,11 +47,12 @@ public class DetailViewModel extends ObservableViewModel {
         this.photoId = photoId;
     }
 
-    public DetailViewModel(@NonNull Application application) {
-        super(application);
+    public void returnList() {
+        backPressedEvent.setValue(null);
     }
 
-    public void returnList(){
-        backPressedEvent.setValue(null);
+    @Inject
+    public DetailViewModel(@NonNull Application application) {
+        super(application);
     }
 }

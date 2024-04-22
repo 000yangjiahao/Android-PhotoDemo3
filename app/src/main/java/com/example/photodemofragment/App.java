@@ -7,6 +7,9 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class App extends Application {
     final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler =
             Thread.getDefaultUncaughtExceptionHandler();

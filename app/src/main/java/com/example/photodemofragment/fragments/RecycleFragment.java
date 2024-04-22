@@ -10,30 +10,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.photodemofragment.R;
-import com.example.photodemofragment.adapters.RecyclerAdapter;
 import com.example.photodemofragment.databinding.FragmentRecycleBinding;
 import com.example.photodemofragment.viewModels.RecycleViewModel;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class RecycleFragment extends Fragment {
-    RecycleViewModel recycleViewModel;
-
+    private FragmentRecycleBinding binding;
+    private RecycleViewModel recycleViewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        FragmentRecycleBinding binding = FragmentRecycleBinding.inflate(inflater, container, false);
-        recycleViewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
-        binding.setRecycleViewModel(recycleViewModel);
+        binding = FragmentRecycleBinding.inflate(inflater, container, false);
         binding.setLifecycleOwner(this);
 
-        RecyclerView recyclerView = binding.recyclerView;
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(recycleViewModel);
-        recyclerView.setAdapter(recyclerAdapter);
+        setupRecyclerView();
+
+        return binding.getRoot();
+    }
+
+    private void setupRecyclerView() {
+
+        recycleViewModel = new ViewModelProvider(this).get(RecycleViewModel.class);
+        binding.setRecycleViewModel(recycleViewModel);
 
         recycleViewModel.getOnClick().observe(getViewLifecycleOwner(), avoid -> {
             if (recycleViewModel.getUnsplashPhoto() != null) {
@@ -47,6 +46,6 @@ public class RecycleFragment extends Fragment {
                 recycleViewModel.setUnsplashPhoto(null);
             }
         });
-        return binding.getRoot();
     }
 }
+

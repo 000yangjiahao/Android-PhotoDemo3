@@ -11,16 +11,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.photodemofragment.R;
 import com.example.photodemofragment.databinding.FragmentDetailBinding;
 import com.example.photodemofragment.viewModels.DetailViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class DetailFragment extends Fragment {
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentDetailBinding detailBinding =FragmentDetailBinding.inflate(inflater,container,false);
-        DetailViewModel detailViewModel =new ViewModelProvider(this).get(DetailViewModel.class);
+        FragmentDetailBinding detailBinding = FragmentDetailBinding.inflate(inflater, container, false);
+        DetailViewModel detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         detailBinding.setDetailViewModel(detailViewModel);
         detailBinding.setLifecycleOwner(this);
 
@@ -33,6 +34,6 @@ public class DetailFragment extends Fragment {
             requireActivity().getSupportFragmentManager().popBackStack();
         });
 
-        return  detailBinding.getRoot();
+        return detailBinding.getRoot();
     }
 }

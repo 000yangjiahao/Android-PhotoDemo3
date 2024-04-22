@@ -7,7 +7,7 @@
             name="photo"
             type="com.example.photodemofragment.entity.UnsplashPhoto" />
         <variable
-            name="recycleViewModel"
+            name="parent"
             type="com.example.photodemofragment.viewModels.RecycleViewModel" />
     </data>
     <LinearLayout
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/detail"
-            android:onClick="@{()->recycleViewModel.detailClick(photo)}"
+            android:onClick="@{()->parent.detailClick(photo)}"
             />
     </LinearLayout>
 </layout>

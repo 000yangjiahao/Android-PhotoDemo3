@@ -45,6 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:items="@{recycleViewModel.photoListLiveData}"
+            app:variableId="@{recycleViewModel.variableId}"
+            app:extraVariable="@{recycleViewModel.extraVariable}"
+            app:itemTemplate="@{@layout/recycler_item}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
     </LinearLayout>

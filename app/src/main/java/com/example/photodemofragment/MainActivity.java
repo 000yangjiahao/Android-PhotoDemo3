@@ -8,9 +8,12 @@ import android.os.Bundle;
 
 import com.example.photodemofragment.databinding.ActivityMainBinding;
 import com.example.photodemofragment.viewModels.MainViewModel;
-import androidx.fragment.app.FragmentManager;
-import com.example.photodemofragment.fragments.RecycleFragment;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,5 +26,4 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.setViewModel(mainViewModel);
         mainBinding.setLifecycleOwner(this);
     }
-
 }
